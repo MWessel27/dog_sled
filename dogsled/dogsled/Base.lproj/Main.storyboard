@@ -15,29 +15,39 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="apple_logo" translatesAutoresizingMaskIntoConstraints="NO" id="6FQ-Fv-D0a">
-                                <rect key="frame" x="7" y="44" width="200" height="200"/>
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="play_button" translatesAutoresizingMaskIntoConstraints="NO" id="6FQ-Fv-D0a">
+                                <rect key="frame" x="157" y="398" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="apple_logo" translatesAutoresizingMaskIntoConstraints="NO" id="ZfZ-dH-SAa">
-                                <rect key="frame" x="205" y="662" width="200" height="200"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KaP-hw-lEy">
+                                <rect key="frame" x="194" y="662" width="200" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
+                                <color key="backgroundColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <accessibility key="accessibilityConfiguration" label="purple">
+                                    <bool key="isElement" value="YES"/>
+                                </accessibility>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="f14-LS-aRW">
+                                <rect key="frame" x="87" y="343" width="240" height="47"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="bottomRightCircleImageView" destination="ZfZ-dH-SAa" id="Bch-Dj-4Uc"/>
-                        <outlet property="topLeftCircleImageView" destination="6FQ-Fv-D0a" id="NCu-q7-aWI"/>
+                        <outlet property="bottomRightArea" destination="KaP-hw-lEy" id="7cV-Rm-Xme"/>
+                        <outlet property="colorDetectorView" destination="f14-LS-aRW" id="TYr-Tr-69n"/>
+                        <outlet property="playImageView" destination="6FQ-Fv-D0a" id="wgb-pF-Vgf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="139" y="139"/>
+            <point key="canvasLocation" x="137.68115942028987" y="138.61607142857142"/>
         </scene>
     </scenes>
     <resources>
-        <image name="apple_logo" width="225" height="225"/>
+        <image name="play_button" width="512" height="512"/>
     </resources>
 </document>

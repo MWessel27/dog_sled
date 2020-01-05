@@ -10,25 +10,23 @@ import UIKit
 
 class MainViewController: UIViewController {
     
-    @IBOutlet weak var topLeftCircleImageView: UIImageView!
-    @IBOutlet weak var bottomRightCircleImageView: UIImageView!
+    @IBOutlet weak var playImageView: UIImageView!
+    @IBOutlet weak var bottomRightArea: UIView!
+    @IBOutlet weak var colorDetectorView: UIView!
+    
     
     var fileViewOrigin: CGPoint!
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         
-        topLeftCircleImageView.layer.masksToBounds = true
-        topLeftCircleImageView.layer.cornerRadius = topLeftCircleImageView.bounds.width / 2
+        bottomRightArea.layer.masksToBounds = true
+        bottomRightArea.layer.cornerRadius = bottomRightArea.bounds.width / 2
         
-        bottomRightCircleImageView.layer.masksToBounds = true
-        bottomRightCircleImageView.layer.cornerRadius = bottomRightCircleImageView.bounds.width / 2
-        
-        addPanGesture(view: topLeftCircleImageView)
-        fileViewOrigin = topLeftCircleImageView.frame.origin
-        view.bringSubviewToFront(topLeftCircleImageView)
+        addPanGesture(view: playImageView)
+        fileViewOrigin = playImageView.frame.origin
+        view.bringSubviewToFront(playImageView)
     }
 
     func addPanGesture(view: UIView) {
@@ -45,7 +43,9 @@ class MainViewController: UIViewController {
             moveViewWithPan(view: fileView, sender: sender)
             
         case .ended:
-            if fileView.frame.intersects(bottomRightCircleImageView.frame) {
+            if fileView.frame.intersects(bottomRightArea.frame) {
+                print("intersected view")
+                colorDetectorView.backgroundColor = bottomRightArea.backgroundColor
                 deleteView(view: fileView)
             } else {
                 returnViewToOrigin(view: fileView)
@@ -70,7 +70,6 @@ class MainViewController: UIViewController {
     }
     
     func deleteView(view: UIView) {
-        print("intersected view")
         UIView.animate(withDuration: 0.3, animations: {
             view.alpha = 0.0
             self.returnViewToOrigin(view: view)
