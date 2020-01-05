@@ -28,10 +28,10 @@ class MainViewController: UIViewController {
         
         addPanGesture(view: topLeftCircleImageView)
         fileViewOrigin = topLeftCircleImageView.frame.origin
+        view.bringSubviewToFront(topLeftCircleImageView)
     }
 
     func addPanGesture(view: UIView) {
-        print("huh")
         let pan = UIPanGestureRecognizer(target: self, action: #selector(MainViewController.handlePan(sender:)))
         view.addGestureRecognizer(pan)
         
@@ -39,19 +39,44 @@ class MainViewController: UIViewController {
     
     @objc func handlePan(sender: UIPanGestureRecognizer) {
         let fileView = sender.view!
-        let translation = sender.translation(in: view)
         
         switch sender.state {
         case .began, .changed:
-            fileView.center = CGPoint(x: fileView.center.x + translation.x, y: fileView.center.y + translation.y)
-            sender.setTranslation(CGPoint.zero, in: view)
+            moveViewWithPan(view: fileView, sender: sender)
+            
         case .ended:
-            break
+            if fileView.frame.intersects(bottomRightCircleImageView.frame) {
+                deleteView(view: fileView)
+            } else {
+                returnViewToOrigin(view: fileView)
+            }
+            
         default:
             break
         }
+    }
+    
+    func moveViewWithPan(view: UIView, sender: UIPanGestureRecognizer) {
+        let translation = sender.translation(in: view)
         
-        
+        view.center = CGPoint(x: view.center.x + translation.x, y: view.center.y + translation.y)
+        sender.setTranslation(CGPoint.zero, in: view)
+    }
+    
+    func returnViewToOrigin(view: UIView) {
+        UIView.animate(withDuration: 0.3, animations: {
+            view.frame.origin = self.fileViewOrigin
+        })
+    }
+    
+    func deleteView(view: UIView) {
+        print("intersected view")
+        UIView.animate(withDuration: 0.3, animations: {
+            view.alpha = 0.0
+            self.returnViewToOrigin(view: view)
+            view.alpha = 1.0
+        })
+        // haptic, play playlist
     }
 
 }
