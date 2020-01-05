@@ -12,6 +12,11 @@ class MainViewController: UIViewController {
     
     @IBOutlet weak var playImageView: UIImageView!
     @IBOutlet weak var bottomRightArea: UIView!
+    @IBOutlet weak var topRightArea: UIView!
+    @IBOutlet weak var topLeftArea: UIView!
+    @IBOutlet weak var bottomLeftArea: UIView!
+    
+    
     @IBOutlet weak var colorDetectorView: UIView!
     
     
@@ -21,8 +26,10 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        bottomRightArea.layer.masksToBounds = true
-        bottomRightArea.layer.cornerRadius = bottomRightArea.bounds.width / 2
+        roundAreaCorners(view: bottomLeftArea)
+        roundAreaCorners(view: topLeftArea)
+        roundAreaCorners(view: bottomRightArea)
+        roundAreaCorners(view: topRightArea)
         
         addPanGesture(view: playImageView)
         fileViewOrigin = playImageView.frame.origin
@@ -44,10 +51,23 @@ class MainViewController: UIViewController {
             
         case .ended:
             if fileView.frame.intersects(bottomRightArea.frame) {
-                print("intersected view")
+                print("intersected view: bottom right")
                 colorDetectorView.backgroundColor = bottomRightArea.backgroundColor
                 deleteView(view: fileView)
-            } else {
+            } else if fileView.frame.intersects(topRightArea.frame) {
+                print("intersected view: top right")
+                colorDetectorView.backgroundColor = topRightArea.backgroundColor
+                deleteView(view: fileView)
+            } else if fileView.frame.intersects(bottomLeftArea.frame) {
+                print("intersected view: bottom left")
+                colorDetectorView.backgroundColor = bottomLeftArea.backgroundColor
+                deleteView(view: fileView)
+            } else if fileView.frame.intersects(topLeftArea.frame) {
+                print("intersected view: top left")
+                colorDetectorView.backgroundColor = topLeftArea.backgroundColor
+                deleteView(view: fileView)
+            }
+            else {
                 returnViewToOrigin(view: fileView)
             }
             
@@ -76,6 +96,11 @@ class MainViewController: UIViewController {
             view.alpha = 1.0
         })
         // haptic, play playlist
+    }
+    
+    func roundAreaCorners(view: UIView){
+        view.layer.masksToBounds = true
+        view.layer.cornerRadius = view.bounds.width / 2
     }
 
 }
