@@ -11,6 +11,7 @@ import UIKit
 class MainViewController: UIViewController {
     
     @IBOutlet weak var playImageView: UIImageView!
+    
     @IBOutlet weak var bottomRightArea: UIView!
     @IBOutlet weak var topRightArea: UIView!
     @IBOutlet weak var topLeftArea: UIView!
@@ -35,6 +36,22 @@ class MainViewController: UIViewController {
         fileViewOrigin = playImageView.frame.origin
         view.bringSubviewToFront(playImageView)
     }
+    
+    func addLongPressGesture(view: UIView) {
+        let longPress = UILongPressGestureRecognizer(target: self, action: #selector(MainViewController.handleLongPress(sender:)))
+        view.addGestureRecognizer(longPress)
+    }
+    
+    @objc func handleLongPress(sender: UILongPressGestureRecognizer) {
+        print("detected long press")
+        performSegue(withIdentifier: "showOptions", sender: self)
+    }
+    
+    func prepare(for segue: UIStoryboardSegue, sender: ActionView) {
+        print("** Test")
+        let nextViewController = segue.destination as? PlaylistSelectorTableViewController
+        nextViewController?.selectedAction = sender.headerTitle.text!
+    }
 
     func addPanGesture(view: UIView) {
         let pan = UIPanGestureRecognizer(target: self, action: #selector(MainViewController.handlePan(sender:)))
@@ -43,6 +60,25 @@ class MainViewController: UIViewController {
     }
     
     @objc func handlePan(sender: UIPanGestureRecognizer) {
+//        let status = MPMediaLibrary.authorizationStatus()
+//        switch status {
+//        case .authorized:
+//            // Get Media
+//            break
+//        case .notDetermined:
+//            MPMediaLibrary.requestAuthorization() { status in
+//                if status == .authorized {
+//                    DispatchQueue.main.async {
+//                        // // Get Media
+//                    }
+//                }
+//            }
+//        default:
+//            break
+//        }
+        
+//        mp.play()
+        
         let fileView = sender.view!
         
         switch sender.state {
@@ -101,7 +137,7 @@ class MainViewController: UIViewController {
     func roundAreaCorners(view: UIView){
         view.layer.masksToBounds = true
         view.layer.cornerRadius = view.bounds.width / 2
+        addLongPressGesture(view: view)
     }
-
 }
 

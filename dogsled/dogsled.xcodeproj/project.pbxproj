@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7B9FF14E23C25F8800A66930 /* ActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9FF14D23C25F8800A66930 /* ActionView.swift */; };
+		7B9FF15023C2663000A66930 /* PlaylistSelectorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9FF14F23C2663000A66930 /* PlaylistSelectorTableViewController.swift */; };
 		7BA9F88F23C22F61005AEF40 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA9F88E23C22F61005AEF40 /* AppDelegate.swift */; };
 		7BA9F89123C22F61005AEF40 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA9F89023C22F61005AEF40 /* SceneDelegate.swift */; };
 		7BA9F89323C22F61005AEF40 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA9F89223C22F61005AEF40 /* MainViewController.swift */; };
@@ -17,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7B9FF14D23C25F8800A66930 /* ActionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionView.swift; sourceTree = "<group>"; };
+		7B9FF14F23C2663000A66930 /* PlaylistSelectorTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistSelectorTableViewController.swift; sourceTree = "<group>"; };
 		7BA9F88B23C22F61005AEF40 /* dogsled.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dogsled.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BA9F88E23C22F61005AEF40 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7BA9F89023C22F61005AEF40 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -61,6 +65,8 @@
 				7BA9F88E23C22F61005AEF40 /* AppDelegate.swift */,
 				7BA9F89023C22F61005AEF40 /* SceneDelegate.swift */,
 				7BA9F89223C22F61005AEF40 /* MainViewController.swift */,
+				7B9FF14F23C2663000A66930 /* PlaylistSelectorTableViewController.swift */,
+				7B9FF14D23C25F8800A66930 /* ActionView.swift */,
 				7BA9F89423C22F61005AEF40 /* Main.storyboard */,
 				7BA9F89A23C22F61005AEF40 /* Assets.xcassets */,
 				7BA9F89C23C22F61005AEF40 /* LaunchScreen.storyboard */,
@@ -141,9 +147,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B9FF14E23C25F8800A66930 /* ActionView.swift in Sources */,
 				7BA9F89323C22F61005AEF40 /* MainViewController.swift in Sources */,
 				7BA9F88F23C22F61005AEF40 /* AppDelegate.swift in Sources */,
 				7BA9F89923C22F61005AEF40 /* dogsled.xcdatamodeld in Sources */,
+				7B9FF15023C2663000A66930 /* PlaylistSelectorTableViewController.swift in Sources */,
 				7BA9F89123C22F61005AEF40 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
