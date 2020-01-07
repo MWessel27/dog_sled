@@ -14,20 +14,14 @@ class ActionView: UIView {
     lazy var headerTitle: UILabel = {
       let headerTitle = UILabel(frame: CGRect(x: 0, y: 50, width: 300, height: 40))
       headerTitle.font = UIFont.systemFont(ofSize: 22, weight: .medium)
-      headerTitle.text = "Custom View"
+      headerTitle.text = "Hold to set Playlist"
       headerTitle.textAlignment = .center
       return headerTitle
     }()
     
     lazy var headerView: UIView = {
       let headerView = UIView(frame: CGRect(x: 0, y: 50, width: 300, height: 40))
-//      headerView.backgroundColor = UIColor(red: 22/255, green: 160/255, blue: 133/255, alpha: 0.5)
-//      headerView.layer.shadowColor = UIColor.gray.cgColor
-//      headerView.layer.shadowOffset = CGSize(width: 0, height: 10)
-//      headerView.layer.shadowOpacity = 1
-//      headerView.layer.shadowRadius = 5
       headerView.addSubview(headerTitle)
-//      headerView.addSubview(addButton)
       return headerView
     }()
     
@@ -46,5 +40,9 @@ class ActionView: UIView {
     //common func to init our view
     private func setupView() {
         addSubview(headerView)
+    }
+    
+    func getHeaderTitle(view: ActionView) -> String {
+        return view.headerTitle.text!
     }
 }

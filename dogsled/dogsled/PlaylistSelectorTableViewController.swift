@@ -12,23 +12,17 @@ import MediaPlayer
 
 class PlaylistSelectorTableViewController: UITableViewController {
     
-    let mp = MPMusicPlayerController.systemMusicPlayer
     var playlists:[MPMediaItemCollection] = []
-    var selectedAction:String = ""
+    var currentActionView:ActionView? = nil
+    var delegate: MainViewController? = nil
     
     override func viewDidLoad() {
         let myPlaylistQuery = MPMediaQuery.playlists()
         playlists = myPlaylistQuery.collections!
         print("Playlist count: \(playlists.count)")
         for playlist in playlists {
-                    print(playlist.value(forProperty: MPMediaPlaylistPropertyName)!)
-
-        //            let songs = playlist.items
-        //            for song in songs {
-        //                let songTitle = song.value(forProperty: MPMediaItemPropertyTitle)
-        //                print("\t\t", songTitle!)
-        //            }
-                }
+            print(playlist.value(forProperty: MPMediaPlaylistPropertyName)!)
+        }
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int
@@ -45,8 +39,6 @@ class PlaylistSelectorTableViewController: UITableViewController {
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellIdentifier", for: indexPath)
 
-        print("\(#function) --- section = \(indexPath.section), row = \(indexPath.row)")
-
         cell.textLabel?.text = playlists[indexPath.row].value(forProperty: MPMediaPlaylistPropertyName)! as! String
 
         return cell
@@ -54,15 +46,9 @@ class PlaylistSelectorTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-        dismiss(animated: true)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let mainViewController = segue.destination as? MainViewController,
-            let index = tableView.indexPathForSelectedRow?.row
-            else {
-                return
-        }
-        print(index)
+        let generator = UIImpactFeedbackGenerator(style: .light)
+        generator.impactOccurred()
+        delegate?.updateActionViewTitle(string: playlists[indexPath.row].value(forProperty: MPMediaPlaylistPropertyName)! as! String, tag: currentActionView!.tag)
+        dismiss(animated: true, completion: nil)
     }
 }
